@@ -33,6 +33,10 @@ repositories {
 
 apply plugin: "io.spring.nohttp"
 
+checkstyle {
+    toolVersion = "8.17"
+}
+
 configure(allprojects) {
     group = "org.springframework.cloud"
 
