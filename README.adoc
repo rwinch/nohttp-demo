@@ -1,0 +1,18 @@
+= Explanation
+
+This project contains a multimodule gradle project that wants a `NoHttp` checkstyle rule to be added.
+
+The first commit uses gradle version `4.10.2` and can run the basic `checkstyle` check by running
+
+    ./gradlew clean check
+
+The second commit adds `NoHttp` and breaks, can be run with:
+
+    ./gradlew clean check --stacktrace
+
+Last commit is the result of upgrading to gradle 5 with the following command:
+
+    ./gradlew wrapper --gradle-version 5.4.1
+
+And then
+    ./gradlew clean check --stacktrace

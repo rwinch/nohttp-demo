@@ -1,0 +1,57 @@
+/*
+ * Copyright 2002-2019 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+buildscript {
+    repositories {
+        maven { url "https://repo.spring.io/plugins-release" }
+    }
+    dependencies {
+        classpath("io.spring.gradle:propdeps-plugin:0.0.10.RELEASE")
+        classpath("io.spring.gradle:dependency-management-plugin:1.0.5.RELEASE")
+        classpath("io.spring.gradle:spring-io-plugin:0.0.8.RELEASE")
+    }
+}
+
+configure(allprojects) {
+    group = "org.springframework.cloud"
+
+    apply plugin: "eclipse"
+    apply plugin: "idea"
+    apply plugin: "checkstyle"
+    apply plugin: "propdeps"
+    apply plugin: "propdeps-idea"
+    apply plugin: "propdeps-eclipse"
+    apply plugin: "io.spring.dependency-management"
+
+    ext {
+        springBootVersion = "2.1.4.RELEASE"
+    }
+
+    repositories {
+        mavenCentral()
+        maven { url "https://repo.spring.io/libs-milestone" }
+    }
+
+
+}
+
+configure(subprojects) {
+
+    checkstyle {
+        configDir = file("${project.rootDir}/ci/config/")
+    }
+
+}
